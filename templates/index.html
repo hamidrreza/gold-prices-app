@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>prices</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Prices</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #708238; /* olive green */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      color: #fff;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .price-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      font-size: 18px;
+      backdrop-filter: blur(4px);
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      .price-box {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Tahoma; direction: rtl; text-align: right;">
-    <h1>Prices:</h1>
-    <p>Tabangohar: {{ taban }}</p>
-    <p>(TGJU): {{ tgju }} ?????</p>
-    <p>Bitcoin: {{ btc }}</p>
+<body>
+  <div class="container">
+    <h1>📈 Live Prices</h1>
+    <div class="price-box">💰 Gold (TabanGohar): {{ taban }}</div>
+    <div class="price-box">💰 Gold (TGJU): {{ tgju }} Toman</div>
+    <div class="price-box">🪙 Bitcoin: {{ btc }}</div>
+  </div>
 </body>
 </html>
