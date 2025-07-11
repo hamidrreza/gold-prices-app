@@ -14,9 +14,17 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      flex-direction: column;
     }
 
-    .container, .loading {
+    .datetime {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .loading, .container {
       text-align: center;
       color: #fff;
       max-width: 400px;
@@ -36,7 +44,7 @@
     }
 
     h1 {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-size: 28px;
     }
 
@@ -59,10 +67,15 @@
         font-size: 16px;
         padding: 12px;
       }
+
+      .datetime {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  
   <div class="loading" id="loading">Loading...</div>
 
   <div class="container" id="content">
@@ -73,12 +86,33 @@
   </div>
 
   <script>
-    // شبیه‌سازی لود شدن داده‌ها (مثلاً از سرور)
+    // تابع برای نمایش تاریخ و ساعت شمسی
+    function updateDateTime() {
+  const now = new Date();
+
+  const formatter = new Intl.DateTimeFormat('fa-IR-u-nu-latn', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+
+  const formatted = formatter.format(now);
+  document.getElementById('datetime').textContent = formatted;
+}
+
+    // آپدیت هر ثانیه
+    setInterval(updateDateTime, 1000);
+    updateDateTime(); // بار اول فوری اجرا شه
+
+    // نمایش محتوا بعد از لود
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-      }, 1000); // اینجا می‌تونی زمان رو تغییر بدی یا به جای تایمر از real fetch استفاده کنی
+      }, 1000);
     });
   </script>
 </body>
